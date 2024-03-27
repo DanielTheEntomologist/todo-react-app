@@ -52,7 +52,7 @@ const List = () => {
   //     setColumns([...columns, { key: 4, title: "Test column" }]);
   //   }, 2000);
   // }, []);
-  const handleSubmit = (e) => {
+  const addColumn = (e) => {
     e.preventDefault();
     setColumns([
       ...columns,
@@ -61,6 +61,24 @@ const List = () => {
     setTitle("");
     setIcon(defaultIcon);
     e.target.reset();
+  };
+
+  const addCard = (title, columnId) => {
+    // console.log(newCard, columnId);
+    const newCard = { key: nanoid(), title: title };
+
+    const newColumns = columns.map((column) => {
+      if (column.key === columnId) {
+        return {
+          ...column,
+          cards: [...column.cards, newCard],
+        };
+      }
+      return column;
+    });
+    setColumns(newColumns);
+    // setCards([...cards, newCard]);
+    // setTitle(defaultCardTitle);
   };
 
   return (
@@ -74,12 +92,25 @@ const List = () => {
         {" "}
         Interesting things I want to check out
       </p>
-      <section className={styles.columns}>{columns.map(Column)}</section>
+      <section className={styles.columns}>
+        {columns.map((column) => {
+          return (
+            <Column
+              key={column.key}
+              id={column.key}
+              title={column.title}
+              icon={column.icon}
+              cards={column.cards}
+              addCard={addCard}
+            />
+          );
+        })}
+      </section>
       <ColumnForm
         title={title}
         onTitleChange={(e) => setTitle(e.target.value)}
         onIconChange={(e) => setIcon(e.target.value)}
-        handleSubmit={handleSubmit}
+        handleSubmit={addColumn}
       />
 
       {/* <form onSubmit={handleSubmit}>
