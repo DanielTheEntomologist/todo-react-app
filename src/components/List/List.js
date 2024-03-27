@@ -1,12 +1,34 @@
 import styles from "./List.module.scss";
 import Column from "../Column/Column.js";
+import ColumnForm from "../ColumnForm/ColumnForm.js";
+import { useState /*,useEffect */ } from "react";
+import { nanoid } from "nanoid";
 
 const List = () => {
-  const columns = [
-    { key: 1, title: "Books", icon: "book" },
-    { key: 2, title: "Movies", icon: "film" },
-    { key: 3, title: "Games", icon: "gamepad" },
-  ];
+  const [columns, setColumns] = useState([
+    { key: nanoid(), title: "Books", icon: "book" },
+    { key: nanoid(), title: "Movies", icon: "film" },
+    { key: nanoid(), title: "Games", icon: "gamepad" },
+  ]);
+
+  const defaultIcon = "book";
+
+  const [title, setTitle] = useState("");
+  const [icon, setIcon] = useState(defaultIcon);
+
+  // run only once
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setColumns([...columns, { key: 4, title: "Test column" }]);
+  //   }, 2000);
+  // }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setColumns([...columns, { key: nanoid(), title: title, icon: icon }]);
+    setTitle("");
+    setIcon(defaultIcon);
+    e.target.reset();
+  };
 
   return (
     <div className={styles.list}>
@@ -20,6 +42,21 @@ const List = () => {
         Interesting things I want to check out
       </p>
       <section className={styles.columns}>{columns.map(Column)}</section>
+      <ColumnForm
+        title={title}
+        onTitleChange={(e) => setTitle(e.target.value)}
+        onIconChange={(e) => setIcon(e.target.value)}
+        handleSubmit={handleSubmit}
+      />
+
+      {/* <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <button>Add column</button>
+      </form> */}
     </div>
   );
 };

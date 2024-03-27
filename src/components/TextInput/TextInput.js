@@ -1,4 +1,5 @@
 import styles from "./TextInput.module.scss";
+import { useState } from "react";
 
 const SearchForm = (props) => {
   return (
@@ -6,6 +7,7 @@ const SearchForm = (props) => {
       className={styles.input}
       type="text"
       placeholder={props.placeholder}
+      onChange={props.onChange}
     />
   );
 };
