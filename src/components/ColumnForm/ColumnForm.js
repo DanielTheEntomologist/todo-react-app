@@ -9,16 +9,20 @@ const id2 = nanoid();
 
 const ColumnForm = function (props) {
   return (
-    <form className={styles.form} onSubmit={props.handleSubmit}>
-      <label htmlFor={id1}>Title:</label>
-      <TextInput
-        type="text"
-        id={id1}
-        value={props.title}
-        onChange={props.onTitleChange}
-      />
-      <label htmlFor={id2}>Icon:</label>
-      <TextInput value={props.icon} id={id2} onChange={props.onIconChange} />
+    <form className={styles.columnForm} onSubmit={props.handleSubmit}>
+      <div>
+        <label htmlFor={id1}>Title:</label>
+        <TextInput
+          type="text"
+          id={id1}
+          value={props.title}
+          onChange={props.onTitleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor={id2}>Icon:</label>
+        <TextInput value={props.icon} id={id2} onChange={props.onIconChange} />
+      </div>
       <Button>Add column</Button>
     </form>
   );

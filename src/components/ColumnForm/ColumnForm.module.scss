@@ -1,1 +1,21 @@
+@import "../../styles/settings.scss";
 
+.columnForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  padding: $base-size;
+
+  label {
+    margin: 0 10px $base-size 0;
+  }
+  input {
+    margin: 0 $base-size $base-size 0;
+  }
+  button {
+    min-width: 200px;
+  }
+}
