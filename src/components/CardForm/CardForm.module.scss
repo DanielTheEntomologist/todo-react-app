@@ -5,11 +5,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  //   flex-wrap: wrap;
 
   padding: $base-size;
-
-  input {
-    margin: 0 $base-size $base-size 0;
-  }
 }
