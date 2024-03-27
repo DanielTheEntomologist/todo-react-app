@@ -1,7 +1,13 @@
 import styles from "./TextInput.module.scss";
 
-const SearchForm = () => {
-  return <input className={styles.input} type="text" />;
+const SearchForm = (props) => {
+  return (
+    <input
+      className={styles.input}
+      type="text"
+      placeholder={props.placeholder}
+    />
+  );
 };
 
 export default SearchForm;

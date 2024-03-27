@@ -1,7 +1,7 @@
 import styles from "./Button.module.scss";
 
-const SearchForm = () => {
-  return <button className={styles.button}>Search</button>;
+const SearchForm = (props) => {
+  return <button className={styles.button}>{props.text}</button>;
 };
 
 export default SearchForm;
