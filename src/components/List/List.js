@@ -2,6 +2,12 @@ import styles from "./List.module.scss";
 import Column from "../Column/Column.js";
 
 const List = () => {
+  const columns = [
+    { key: 1, title: "Books", icon: "book" },
+    { key: 2, title: "Movies", icon: "film" },
+    { key: 3, title: "Games", icon: "gamepad" },
+  ];
+
   return (
     <div className={styles.list}>
       <header className={styles.header}>
@@ -13,16 +19,7 @@ const List = () => {
         {" "}
         Interesting things I want to check out
       </p>
-      <section className={styles.columns}>
-        <Column title="Books" icon="book" />
-        <Column title="Movies" icon="film" />
-        <Column title="Games" icon="gamepad" />
-      </section>
-      {/* <ul>
-            <li>Learn React</li>
-            <li>Code React</li>
-            <li>Refactor React</li>
-        </ul> */}
+      <section className={styles.columns}>{columns.map(Column)}</section>
     </div>
   );
 };
