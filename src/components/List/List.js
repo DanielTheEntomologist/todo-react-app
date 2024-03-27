@@ -5,10 +5,40 @@ import { useState /*,useEffect */ } from "react";
 import { nanoid } from "nanoid";
 
 const List = () => {
+  // const [columns, setColumns] = useState([
+  //   { key: nanoid(), title: "Books", icon: "book" },
+  //   { key: nanoid(), title: "Movies", icon: "film" },
+  //   { key: nanoid(), title: "Games", icon: "gamepad" },
+  // ]);
+
   const [columns, setColumns] = useState([
-    { key: nanoid(), title: "Books", icon: "book" },
-    { key: nanoid(), title: "Movies", icon: "film" },
-    { key: nanoid(), title: "Games", icon: "gamepad" },
+    {
+      key: nanoid(),
+      title: "Books",
+      icon: "book",
+      cards: [
+        { key: nanoid(), title: "This is Going to Hurt" },
+        { key: nanoid(), title: "Interpreter of Maladies" },
+      ],
+    },
+    {
+      key: nanoid(),
+      title: "Movies",
+      icon: "film",
+      cards: [
+        { key: nanoid(), title: "Harry Potter" },
+        { key: nanoid(), title: "Star Wars" },
+      ],
+    },
+    {
+      key: nanoid(),
+      title: "Games",
+      icon: "gamepad",
+      cards: [
+        { key: nanoid(), title: "The Witcher" },
+        { key: nanoid(), title: "Skyrim" },
+      ],
+    },
   ]);
 
   const defaultIcon = "book";
@@ -24,7 +54,10 @@ const List = () => {
   // }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
-    setColumns([...columns, { key: nanoid(), title: title, icon: icon }]);
+    setColumns([
+      ...columns,
+      { key: nanoid(), title: title, icon: icon, cards: [] },
+    ]);
     setTitle("");
     setIcon(defaultIcon);
     e.target.reset();
