@@ -10,6 +10,12 @@ const Column = ({ title, icon, id }) => {
     state.cards.filter((card) => card.columnId === id)
   );
 
+  const searchTerm = useSelector((state) => state.searchTerm);
+
+  const filteredCards = cards.filter((card) =>
+    card.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const element = (
     <article className={styles.column}>
       <h1 className={styles.title}>
@@ -17,7 +23,7 @@ const Column = ({ title, icon, id }) => {
         {title}
       </h1>
       <ul className={styles.cards}>
-        {cards.map((card) => (
+        {filteredCards.map((card) => (
           <Card key={card.id} id={card.id} title={card.title} />
         ))}
       </ul>

@@ -2,7 +2,7 @@ import styles from "./SearchForm.module.scss";
 import TextInput from "../TextInput/TextInput.js";
 import Button from "../Button/Button.js";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
 const SearchForm = () => {
@@ -10,11 +10,21 @@ const SearchForm = () => {
 
   const dispatch = useDispatch();
 
+  const previousTerm = useSelector((state) => state.searchTerm);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let termToDispatch = term;
+    if (term === previousTerm) {
+      setTerm("");
+      termToDispatch = "";
+    }
+    termToDispatch = termToDispatch.trim();
+
     dispatch({
       type: "CHANGE_SEARCH_TERM",
-      payload: { term: term },
+      payload: { term: termToDispatch },
     });
     e.target.reset();
   };
