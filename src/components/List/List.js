@@ -4,6 +4,8 @@ import ColumnForm from "../ColumnForm/ColumnForm.js";
 import { useState /*,useEffect */ } from "react";
 import { nanoid } from "nanoid";
 
+import { useSelector } from "react-redux";
+
 const List = () => {
   // const [columns, setColumns] = useState([
   //   { key: nanoid(), title: "Books", icon: "book" },
@@ -11,35 +13,41 @@ const List = () => {
   //   { key: nanoid(), title: "Games", icon: "gamepad" },
   // ]);
 
-  const [columns, setColumns] = useState([
-    {
-      key: nanoid(),
-      title: "Books",
-      icon: "book",
-      cards: [
-        { key: nanoid(), title: "This is Going to Hurt" },
-        { key: nanoid(), title: "Interpreter of Maladies" },
-      ],
-    },
-    {
-      key: nanoid(),
-      title: "Movies",
-      icon: "film",
-      cards: [
-        { key: nanoid(), title: "Harry Potter" },
-        { key: nanoid(), title: "Star Wars" },
-      ],
-    },
-    {
-      key: nanoid(),
-      title: "Games",
-      icon: "gamepad",
-      cards: [
-        { key: nanoid(), title: "The Witcher" },
-        { key: nanoid(), title: "Skyrim" },
-      ],
-    },
-  ]);
+  const columns = useSelector((state) => state.columns);
+
+  const setColumns = (columns) => {
+    return null;
+  };
+
+  // const [columns, setColumns] = useState([
+  //   {
+  //     key: nanoid(),
+  //     title: "Books",
+  //     icon: "book",
+  //     cards: [
+  //       { key: nanoid(), title: "This is Going to Hurt" },
+  //       { key: nanoid(), title: "Interpreter of Maladies" },
+  //     ],
+  //   },
+  //   {
+  //     key: nanoid(),
+  //     title: "Movies",
+  //     icon: "film",
+  //     cards: [
+  //       { key: nanoid(), title: "Harry Potter" },
+  //       { key: nanoid(), title: "Star Wars" },
+  //     ],
+  //   },
+  //   {
+  //     key: nanoid(),
+  //     title: "Games",
+  //     icon: "gamepad",
+  //     cards: [
+  //       { key: nanoid(), title: "The Witcher" },
+  //       { key: nanoid(), title: "Skyrim" },
+  //     ],
+  //   },
+  // ]);
 
   const defaultIcon = "book";
 
@@ -52,16 +60,16 @@ const List = () => {
   //     setColumns([...columns, { key: 4, title: "Test column" }]);
   //   }, 2000);
   // }, []);
-  const addColumn = (e) => {
-    e.preventDefault();
-    setColumns([
-      ...columns,
-      { key: nanoid(), title: title, icon: icon, cards: [] },
-    ]);
-    setTitle("");
-    setIcon(defaultIcon);
-    e.target.reset();
-  };
+  // const addColumn = (e) => {
+  //   e.preventDefault();
+  //   setColumns([
+  //     ...columns,
+  //     { key: nanoid(), title: title, icon: icon, cards: [] },
+  //   ]);
+  //   setTitle("");
+  //   setIcon(defaultIcon);
+  //   e.target.reset();
+  // };
 
   const addCard = (title, columnId) => {
     // console.log(newCard, columnId);
@@ -96,12 +104,10 @@ const List = () => {
         {columns.map((column) => {
           return (
             <Column
-              key={column.key}
-              id={column.key}
+              key={column.id}
+              id={column.id}
               title={column.title}
               icon={column.icon}
-              cards={column.cards}
-              addCard={addCard}
             />
           );
         })}
@@ -110,7 +116,7 @@ const List = () => {
         title={title}
         onTitleChange={(e) => setTitle(e.target.value)}
         onIconChange={(e) => setIcon(e.target.value)}
-        handleSubmit={addColumn}
+        // handleSubmit={addColumn}
       />
 
       {/* <form onSubmit={handleSubmit}>
