@@ -7,6 +7,8 @@ const reducer = (state, action) => {
       return { ...state, columns: [...state.columns, action.payload] };
     case "ADD_CARD":
       return { ...state, cards: [...state.cards, action.payload] };
+    case "CHANGE_SEARCH_TERM":
+      return { ...state, searchTerm: action.payload.term };
     default:
       return state;
   }
