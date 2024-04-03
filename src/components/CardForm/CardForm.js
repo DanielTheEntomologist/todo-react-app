@@ -4,14 +4,21 @@ import TextInput from "../TextInput/TextInput.js";
 import Button from "../Button/Button.js";
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-const CardForm = function (props) {
-  const [title, setTitle] = useState("New Card");
+const CardForm = function ({ columnId }) {
+  const defaultTitle = "New Card";
+  const [title, setTitle] = useState(defaultTitle);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.action(title, props.columnId);
-    setTitle("New Card");
+    dispatch({
+      type: "ADD_CARD",
+      newCard: { id: nanoid(), columnId: columnId, title: title },
+    });
+    setTitle(defaultTitle);
     e.target.reset();
   };
 
@@ -20,7 +27,7 @@ const CardForm = function (props) {
       <TextInput
         type="text"
         id={nanoid()}
-        placeholder={title}
+        placeholder={defaultTitle}
         onChange={(e) => setTitle(e.target.value)}
       />
       <Button>Add card</Button>
