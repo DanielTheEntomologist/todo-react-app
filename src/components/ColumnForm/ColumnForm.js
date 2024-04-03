@@ -4,8 +4,9 @@ import TextInput from "../TextInput/TextInput.js";
 import Button from "../Button/Button.js";
 import { nanoid } from "nanoid";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { addColumn } from "../../redux/store.js";
 
 const ColumnForm = function () {
   const [[id1, id2], setIds] = useState(() => {
@@ -21,10 +22,7 @@ const ColumnForm = function () {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({
-      type: "ADD_COLUMN",
-      payload: { id: nanoid(), title: title, icon: icon },
-    });
+    dispatch(addColumn(title, icon));
     setTitle(defaultTitle);
     setIcon(defaultIcon);
     e.target.reset();

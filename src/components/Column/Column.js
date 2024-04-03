@@ -4,17 +4,10 @@ import Card from "../Card/Card.js";
 import CardForm from "../CardForm/CardForm.js";
 
 import { useSelector } from "react-redux";
+import { getFilteredCards } from "../../redux/store.js";
 
 const Column = ({ title, icon, id }) => {
-  const cards = useSelector((state) =>
-    state.cards.filter((card) => card.columnId === id)
-  );
-
-  const searchTerm = useSelector((state) => state.searchTerm);
-
-  const filteredCards = cards.filter((card) =>
-    card.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const cards = useSelector((state) => getFilteredCards(state, id));
 
   const element = (
     <article className={styles.column}>
@@ -23,7 +16,7 @@ const Column = ({ title, icon, id }) => {
         {title}
       </h1>
       <ul className={styles.cards}>
-        {filteredCards.map((card) => (
+        {cards.map((card) => (
           <Card key={card.id} id={card.id} title={card.title} />
         ))}
       </ul>

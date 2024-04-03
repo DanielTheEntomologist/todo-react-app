@@ -4,6 +4,7 @@ import Button from "../Button/Button.js";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { changeSearchTerm } from "../../redux/store.js";
 
 const SearchForm = () => {
   const [term, setTerm] = useState("");
@@ -22,10 +23,7 @@ const SearchForm = () => {
     }
     termToDispatch = termToDispatch.trim();
 
-    dispatch({
-      type: "CHANGE_SEARCH_TERM",
-      payload: { term: termToDispatch },
-    });
+    dispatch(changeSearchTerm(termToDispatch));
     e.target.reset();
   };
 
