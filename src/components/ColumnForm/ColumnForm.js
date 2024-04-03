@@ -23,7 +23,7 @@ const ColumnForm = function () {
     e.preventDefault();
     dispatch({
       type: "ADD_COLUMN",
-      newColumn: { id: nanoid(), title: title, icon: icon },
+      payload: { id: nanoid(), title: title, icon: icon },
     });
     setTitle(defaultTitle);
     setIcon(defaultIcon);

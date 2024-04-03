@@ -16,7 +16,7 @@ const CardForm = function ({ columnId }) {
     e.preventDefault();
     dispatch({
       type: "ADD_CARD",
-      newCard: { id: nanoid(), columnId: columnId, title: title },
+      payload: { id: nanoid(), columnId: columnId, title: title },
     });
     setTitle(defaultTitle);
     e.target.reset();
