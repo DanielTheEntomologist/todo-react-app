@@ -1,5 +1,4 @@
 import styles from "./TextInput.module.scss";
-import { useState } from "react";
 
 const SearchForm = (props) => {
   return (

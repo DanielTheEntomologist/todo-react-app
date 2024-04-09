@@ -1,0 +1,33 @@
+@import "../../styles/settings.scss";
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $base-size;
+  background-color: $color-darker;
+  color: $color-light;
+}
+
+.logo {
+  padding: ($base-size / 2) ($base-size * 2);
+  font-size: ($base-size * 2);
+  font-weight: bold;
+  color: $color-light;
+  text-transform: uppercase;
+}
+.navlist {
+  display: flex;
+  list-style: none;
+}
+
+.navitem {
+  .navlink {
+    padding: ($base-size / 2) ($base-size * 2);
+    font-size: $base-size * 1.5;
+    color: $color-light;
+    text-decoration: none;
+    // text-transform: uppercase;
+    font-weight: bold;
+  }
+}
