@@ -1,20 +1,22 @@
-// import logo from "./logo.svg";
-// import "./App.css";
-import Container from "./components/Container/Container.js";
+import { Routes, Route } from "react-router-dom";
+
 import Navbar from "./components/Navbar/Navbar.js";
-import PageTitle from "./components/PageTitle/PageTitle.js";
 
 import Home from "./components/HomePage/Home.js";
-import About from "./components/AboutPage/AboutPage.js";
 import Favorite from "./components/FavoritePage/FavoritePage.js";
+import About from "./components/AboutPage/AboutPage.js";
+import NoMatch from "./components/NoMatchPage/NoMatchPage.js";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Home />
-      <About />
-      <Favorite />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/favorite" element={<Favorite />} />
+        <Route path="*" element={<NoMatch />} />
+      </Routes>
     </div>
   );
 }
