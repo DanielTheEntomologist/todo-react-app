@@ -10,7 +10,7 @@ const HomePage = () => {
     <div>
       <Hero />
       <SearchForm />
-      <List />
+      <List listId={1} />
     </div>
   );
 };

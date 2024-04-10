@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addColumn } from "../../redux/store.js";
 
-const ColumnForm = function () {
+const ColumnForm = function ({ listId }) {
   const [[id1, id2], setIds] = useState(() => {
     return [nanoid(), nanoid()];
   });
@@ -22,7 +22,7 @@ const ColumnForm = function () {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addColumn(title, icon));
+    dispatch(addColumn(listId, title, icon));
     setTitle(defaultTitle);
     setIcon(defaultIcon);
     e.target.reset();

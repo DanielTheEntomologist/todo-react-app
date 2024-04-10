@@ -3,10 +3,10 @@ import Column from "../Column/Column.js";
 import ColumnForm from "../ColumnForm/ColumnForm.js";
 
 import { useSelector } from "react-redux";
-import { getAllColumns } from "../../redux/store.js";
+import { getAllColumns, getListColumns } from "../../redux/store.js";
 
-const List = () => {
-  const columns = useSelector((state) => getAllColumns(state));
+const List = ({ listId }) => {
+  const columns = useSelector((state) => getListColumns(state, listId));
 
   return (
     <div className={styles.list}>
@@ -30,7 +30,7 @@ const List = () => {
           );
         })}
       </section>
-      <ColumnForm />
+      <ColumnForm listId={listId} />
     </div>
   );
 };

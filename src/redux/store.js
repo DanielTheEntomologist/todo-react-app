@@ -15,15 +15,21 @@ export const getFilteredCards = (state, columnId) => {
       card.columnId === columnId && stringContains(card.title, searchTerm)
   );
 };
+
 export const getAllColumns = (state) => {
   return state.columns;
 };
 
+export const getListColumns = (state, listId) => {
+  const columns = state.columns;
+  return columns.filter((column) => column.listId === listId);
+};
+
 //action creators
-export const addColumn = (title, icon) => {
+export const addColumn = (listId, title, icon) => {
   return {
     type: "ADD_COLUMN",
-    payload: { id: nanoid(), title: title, icon: icon },
+    payload: { listId: listId, id: nanoid(), title: title, icon: icon },
   };
 };
 export const addCard = (columnId, title) => {
