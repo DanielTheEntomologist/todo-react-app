@@ -14,6 +14,20 @@ export const addList = (title, subtitle) => ({
   payload: { listId: nanoid(), title, subtitle },
 });
 
+// Selectors
+export const getAll = (state) => {
+  return state.lists;
+};
+
+export const getAllIds = (state) => {
+  return state.lists.map((list) => list.id);
+};
+
+export const getLists = {
+  all: getAll,
+  allIds: getAllIds,
+};
+
 // Reducer
 const listsReducer = (lists = initialState.lists, action) => {
   switch (action.type) {

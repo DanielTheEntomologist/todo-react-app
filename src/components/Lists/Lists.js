@@ -3,9 +3,10 @@ import styles from "./Lists.module.scss";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllLists } from "../../redux/store.js";
+import { getLists } from "../../redux/listsRedux.js";
 
 const Lists = () => {
-  const lists = useSelector(getAllLists);
+  const lists = useSelector(getLists.all);
 
   return (
     <section className={styles.lists}>

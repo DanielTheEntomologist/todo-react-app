@@ -27,14 +27,6 @@ export const getListColumns = (state, listId) => {
   return columns.filter((column) => column.listId === listId);
 };
 
-export const getAllLists = (state) => {
-  return state.lists;
-};
-
-export const getAllListIds = (state) => {
-  return state.lists.map((list) => list.id);
-};
-
 export const getFavoriteCards = (state) => {
   return state.cards.filter((card) => card.isFavorite);
 };

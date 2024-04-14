@@ -4,13 +4,14 @@ import ColumnForm from "../ColumnForm/ColumnForm.js";
 import SearchForm from "../SearchForm/SearchForm.js";
 
 import { useSelector } from "react-redux";
-import { getListColumns, getAllListIds } from "../../redux/store.js";
+import { getListColumns } from "../../redux/store.js";
+import { getLists } from "../../redux/listsRedux.js";
 import { useParams, Navigate } from "react-router-dom";
 
 const List = () => {
   const { listId } = useParams();
 
-  const lists = useSelector(getAllListIds);
+  const lists = useSelector(getLists.allIds);
   const columns = useSelector((state) => getListColumns(state, listId));
 
   if (listId === undefined || !lists.includes(listId)) {
