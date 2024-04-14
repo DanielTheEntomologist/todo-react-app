@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addList } from "../../redux/store.js";
+import { addList } from "../../redux/listsRedux.js";
 
 const ListForm = function () {
   const [[id1, id2], setIds] = useState(() => {

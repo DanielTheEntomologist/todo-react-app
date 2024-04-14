@@ -63,12 +63,7 @@ export const changeSearchTerm = (term) => {
     payload: { term: term },
   };
 };
-export const addList = (title, description) => {
-  return {
-    type: "ADD_LIST",
-    payload: { id: nanoid(), title: title, description: description },
-  };
-};
+
 export const toggleFavoriteCard = (id) => {
   return {
     type: "TOGGLE_CARD_FAVORITE",
