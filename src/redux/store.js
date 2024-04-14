@@ -52,6 +52,12 @@ export const changeSearchTerm = (term) => {
     payload: { term: term },
   };
 };
+export const addList = (title, description) => {
+  return {
+    type: "ADD_LIST",
+    payload: { id: nanoid(), title: title, description: description },
+  };
+};
 
 //reducer
 const reducer = (state, action) => {
@@ -62,6 +68,8 @@ const reducer = (state, action) => {
       return { ...state, cards: [...state.cards, action.payload] };
     case "CHANGE_SEARCH_TERM":
       return { ...state, searchTerm: action.payload.term };
+    case "ADD_LIST":
+      return { ...state, lists: [...state.lists, action.payload] };
     default:
       return state;
   }
