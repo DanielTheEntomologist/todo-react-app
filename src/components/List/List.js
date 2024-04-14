@@ -4,7 +4,7 @@ import ColumnForm from "../ColumnForm/ColumnForm.js";
 import SearchForm from "../SearchForm/SearchForm.js";
 
 import { useSelector } from "react-redux";
-import { getListColumns } from "../../redux/store.js";
+import { getListColumns } from "../../redux/columnsRedux.js";
 import { getLists } from "../../redux/listsRedux.js";
 import { useParams, Navigate } from "react-router-dom";
 

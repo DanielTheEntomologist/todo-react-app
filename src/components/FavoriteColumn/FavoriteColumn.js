@@ -4,7 +4,7 @@ import Card from "../Card/Card.js";
 import CardForm from "../CardForm/CardForm.js";
 
 import { useSelector } from "react-redux";
-import { getFavoriteCards } from "../../redux/store.js";
+import { getFavoriteCards } from "../../redux/cardsRedux.js";
 
 const FavoriteColumn = ({ title, icon, id }) => {
   const cards = useSelector((state) => getFavoriteCards(state));

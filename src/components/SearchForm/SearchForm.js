@@ -5,7 +5,7 @@ import buttonStyles from "../Button/Button.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { changeSearchTerm } from "../../redux/store.js";
+import { changeSearchTerm } from "../../redux/searchTermRedux.js";
 
 const SearchForm = () => {
   const [term, setTerm] = useState("");

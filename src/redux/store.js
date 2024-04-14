@@ -1,111 +1,12 @@
 import { createStore, combineReducers } from "redux";
 import initialState from "./initialState";
 
-import { stringContains } from "../utils/stringContains";
-
-import { nanoid } from "nanoid";
-
 import listsReducer from "./listsRedux";
-
-//selectors
-export const getFilteredCards = (state, columnId) => {
-  const searchTerm = state.searchTerm;
-  const cards = state.cards;
-
-  return cards.filter(
-    (card) =>
-      card.columnId === columnId && stringContains(card.title, searchTerm)
-  );
-};
-
-export const getAllColumns = (state) => {
-  return state.columns;
-};
-
-export const getListColumns = (state, listId) => {
-  const columns = state.columns;
-  return columns.filter((column) => column.listId === listId);
-};
-
-export const getFavoriteCards = (state) => {
-  return state.cards.filter((card) => card.isFavorite);
-};
-
-//action creators
-export const addColumn = (listId, title, icon) => {
-  return {
-    type: "ADD_COLUMN",
-    payload: { listId: listId, id: nanoid(), title: title, icon: icon },
-  };
-};
-export const addCard = (columnId, title) => {
-  return {
-    type: "ADD_CARD",
-    payload: {
-      id: nanoid(),
-      columnId: columnId,
-      title: title,
-      isFavorite: false,
-    },
-  };
-};
-export const changeSearchTerm = (term) => {
-  return {
-    type: "CHANGE_SEARCH_TERM",
-    payload: { term: term },
-  };
-};
-
-export const toggleFavoriteCard = (id) => {
-  return {
-    type: "TOGGLE_CARD_FAVORITE",
-    payload: { id: id },
-  };
-};
-
-export const removeCard = (id) => {
-  return {
-    type: "REMOVE_CARD",
-    payload: { id: id },
-  };
-};
+import columnsReducer from "./columnsRedux";
+import cardsReducer from "./cardsRedux";
+import searchTermReducer from "./searchTermRedux";
 
 //reducers
-const columnsReducer = (columns = initialState.columns, action) => {
-  switch (action.type) {
-    case "ADD_COLUMN":
-      return [...columns, action.payload];
-    default:
-      return columns;
-  }
-};
-
-const cardsReducer = (cards = initialState.cards, action) => {
-  switch (action.type) {
-    case "ADD_CARD":
-      return [...cards, action.payload];
-    case "TOGGLE_CARD_FAVORITE":
-      return cards.map((card) =>
-        card.id === action.payload.id
-          ? { ...card, isFavorite: !card.isFavorite }
-          : card
-      );
-    case "REMOVE_CARD":
-      return cards.filter((card) => card.id !== action.payload.id);
-    default:
-      return cards;
-  }
-};
-
-const searchTermReducer = (term = initialState.searchTerm, action) => {
-  switch (action.type) {
-    case "CHANGE_SEARCH_TERM":
-      return action.payload.term;
-    default:
-      return term;
-  }
-};
-
 const subreducers = {
   lists: listsReducer,
   columns: columnsReducer,

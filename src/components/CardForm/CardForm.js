@@ -5,7 +5,7 @@ import Button from "../Button/Button.js";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addCard } from "../../redux/store.js";
+import { addCard } from "../../redux/cardsRedux.js";
 
 const CardForm = function ({ columnId }) {
   const defaultTitle = "New Card";

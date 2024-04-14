@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addColumn } from "../../redux/store.js";
+import { addColumn } from "../../redux/columnsRedux.js";
 
 const ColumnForm = function ({ listId }) {
   console.log("ColumnForm listId", listId);

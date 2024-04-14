@@ -4,11 +4,10 @@ import Card from "../Card/Card.js";
 import CardForm from "../CardForm/CardForm.js";
 
 import { useSelector } from "react-redux";
-import { getFilteredCards } from "../../redux/store.js";
+import { getFilteredCards } from "../../redux/cardsRedux.js";
 
 const Column = ({ title, icon, id }) => {
   const cards = useSelector((state) => getFilteredCards(state, id));
-
   const element = (
     <article className={styles.column}>
       <h1 className={styles.title}>
@@ -28,7 +27,6 @@ const Column = ({ title, icon, id }) => {
       <CardForm columnId={id} />
     </article>
   );
-
   return element;
 };
 
