@@ -1,6 +1,7 @@
 import styles from "./List.module.scss";
 import Column from "../Column/Column.js";
 import ColumnForm from "../ColumnForm/ColumnForm.js";
+import SearchForm from "../SearchForm/SearchForm.js";
 
 import { useSelector } from "react-redux";
 import { getListColumns, getAllListIds } from "../../redux/store.js";
@@ -18,6 +19,7 @@ const List = () => {
 
   return (
     <div className={styles.list}>
+      <SearchForm />
       <header className={styles.header}>
         <h2 className={styles.title}>
           Things to do <span>soon</span>

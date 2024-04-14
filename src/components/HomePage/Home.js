@@ -9,7 +9,6 @@ const HomePage = () => {
   return (
     <div>
       <Hero />
-      <SearchForm />
       <Lists />
     </div>
   );

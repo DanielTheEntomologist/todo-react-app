@@ -1,6 +1,7 @@
 import styles from "./SearchForm.module.scss";
 import TextInput from "../TextInput/TextInput.js";
 import Button from "../Button/Button.js";
+import buttonStyles from "../Button/Button.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -27,16 +28,23 @@ const SearchForm = () => {
     e.target.reset();
   };
 
+  const filteringActive = previousTerm !== "";
+
+  let placeholder = previousTerm;
+  if (!filteringActive) placeholder = "Search...";
+
   return (
     <form className={styles.searchForm} onSubmit={handleSubmit}>
       <TextInput
-        placeholder="Search..."
+        placeholder={placeholder}
         onChange={(e) => {
           setTerm(e.target.value);
         }}
       />
-      <Button>
-        <span className="fa fa-search"></span>
+      <Button classList={filteringActive ? [buttonStyles.danger] : null}>
+        <span
+          className={filteringActive ? "fa fa-filter" : "fa fa-search"}
+        ></span>
       </Button>
     </form>
   );
