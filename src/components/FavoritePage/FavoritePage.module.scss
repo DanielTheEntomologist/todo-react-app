@@ -1,1 +1,10 @@
 @import "../../styles/settings.scss";
+
+.favorite {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: $base-size * 2;
+}

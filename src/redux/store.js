@@ -33,6 +33,10 @@ export const getAllListIds = (state) => {
   return state.lists.map((list) => list.id);
 };
 
+export const getFavoriteCards = (state) => {
+  return state.cards.filter((card) => card.isFavorite);
+};
+
 //action creators
 export const addColumn = (listId, title, icon) => {
   return {
