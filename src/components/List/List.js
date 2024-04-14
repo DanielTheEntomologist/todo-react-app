@@ -7,8 +7,7 @@ import { getListColumns } from "../../redux/store.js";
 import { useParams } from "react-router-dom";
 
 const List = () => {
-  let { listId } = useParams();
-  listId = parseInt(listId);
+  const { listId } = useParams();
   const columns = useSelector((state) => getListColumns(state, listId));
 
   return (
