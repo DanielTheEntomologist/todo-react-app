@@ -5,6 +5,8 @@ import { stringContains } from "../utils/stringContains";
 
 import { nanoid } from "nanoid";
 
+import listsReducer from "./listsRedux";
+
 //selectors
 export const getFilteredCards = (state, columnId) => {
   const searchTerm = state.searchTerm;
@@ -88,15 +90,6 @@ const columnsReducer = (columns = initialState.columns, action) => {
       return [...columns, action.payload];
     default:
       return columns;
-  }
-};
-
-const listsReducer = (lists = initialState.lists, action) => {
-  switch (action.type) {
-    case "ADD_LIST":
-      return [...lists, action.payload];
-    default:
-      return lists;
   }
 };
 
