@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import initialState from "./initialState";
 
 import { stringContains } from "../utils/stringContains";
@@ -82,7 +82,7 @@ export const removeCard = (id) => {
 };
 
 //reducers
-const columnsReducer = (columns, action) => {
+const columnsReducer = (columns = initialState.columns, action) => {
   switch (action.type) {
     case "ADD_COLUMN":
       return [...columns, action.payload];
@@ -91,7 +91,7 @@ const columnsReducer = (columns, action) => {
   }
 };
 
-const listsReducer = (lists, action) => {
+const listsReducer = (lists = initialState.lists, action) => {
   switch (action.type) {
     case "ADD_LIST":
       return [...lists, action.payload];
@@ -100,7 +100,7 @@ const listsReducer = (lists, action) => {
   }
 };
 
-const cardsReducer = (cards, action) => {
+const cardsReducer = (cards = initialState.cards, action) => {
   switch (action.type) {
     case "ADD_CARD":
       return [...cards, action.payload];
@@ -117,7 +117,7 @@ const cardsReducer = (cards, action) => {
   }
 };
 
-const searchTermReducer = (term, action) => {
+const searchTermReducer = (term = initialState.searchTerm, action) => {
   switch (action.type) {
     case "CHANGE_SEARCH_TERM":
       return action.payload.term;
@@ -126,16 +126,14 @@ const searchTermReducer = (term, action) => {
   }
 };
 
-const reducer = (state, action) => {
-  const newState = {
-    lists: listsReducer(state.lists, action),
-    columns: columnsReducer(state.columns, action),
-    cards: cardsReducer(state.cards, action),
-    searchTerm: searchTermReducer(state.searchTerm, action),
-  };
-
-  return newState;
+const subreducers = {
+  lists: listsReducer,
+  columns: columnsReducer,
+  cards: cardsReducer,
+  searchTerm: searchTermReducer,
 };
+
+const reducer = combineReducers(subreducers);
 
 const store = createStore(
   reducer,
