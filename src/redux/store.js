@@ -81,34 +81,60 @@ export const removeCard = (id) => {
   };
 };
 
-//reducer
-const reducer = (state, action) => {
+//reducers
+const columnsReducer = (columns, action) => {
   switch (action.type) {
     case "ADD_COLUMN":
-      return { ...state, columns: [...state.columns, action.payload] };
-    case "ADD_CARD":
-      return { ...state, cards: [...state.cards, action.payload] };
-    case "CHANGE_SEARCH_TERM":
-      return { ...state, searchTerm: action.payload.term };
-    case "ADD_LIST":
-      return { ...state, lists: [...state.lists, action.payload] };
-    case "TOGGLE_CARD_FAVORITE":
-      return {
-        ...state,
-        cards: state.cards.map((card) =>
-          card.id === action.payload.id
-            ? { ...card, isFavorite: !card.isFavorite }
-            : card
-        ),
-      };
-    case "REMOVE_CARD":
-      return {
-        ...state,
-        cards: state.cards.filter((card) => card.id !== action.payload.id),
-      };
+      return [...columns, action.payload];
     default:
-      return state;
+      return columns;
   }
+};
+
+const listsReducer = (lists, action) => {
+  switch (action.type) {
+    case "ADD_LIST":
+      return [...lists, action.payload];
+    default:
+      return lists;
+  }
+};
+
+const cardsReducer = (cards, action) => {
+  switch (action.type) {
+    case "ADD_CARD":
+      return [...cards, action.payload];
+    case "TOGGLE_CARD_FAVORITE":
+      return cards.map((card) =>
+        card.id === action.payload.id
+          ? { ...card, isFavorite: !card.isFavorite }
+          : card
+      );
+    case "REMOVE_CARD":
+      return cards.filter((card) => card.id !== action.payload.id);
+    default:
+      return cards;
+  }
+};
+
+const searchTermReducer = (term, action) => {
+  switch (action.type) {
+    case "CHANGE_SEARCH_TERM":
+      return action.payload.term;
+    default:
+      return term;
+  }
+};
+
+const reducer = (state, action) => {
+  const newState = {
+    lists: listsReducer(state.lists, action),
+    columns: columnsReducer(state.columns, action),
+    cards: cardsReducer(state.cards, action),
+    searchTerm: searchTermReducer(state.searchTerm, action),
+  };
+
+  return newState;
 };
 
 const store = createStore(

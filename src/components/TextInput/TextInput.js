@@ -1,6 +1,6 @@
 import styles from "./TextInput.module.scss";
 
-const SearchForm = (props) => {
+const TextInput = (props) => {
   return (
     <input
       id={props.id}
@@ -12,4 +12,4 @@ const SearchForm = (props) => {
   );
 };
 
-export default SearchForm;
+export default TextInput;
