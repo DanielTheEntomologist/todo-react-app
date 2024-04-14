@@ -25,6 +25,10 @@ export const getListColumns = (state, listId) => {
   return columns.filter((column) => column.listId === listId);
 };
 
+export const getAllLists = (state) => {
+  return state.lists;
+};
+
 //action creators
 export const addColumn = (listId, title, icon) => {
   return {

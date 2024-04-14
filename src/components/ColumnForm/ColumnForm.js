@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { addColumn } from "../../redux/store.js";
 
 const ColumnForm = function ({ listId }) {
+  console.log("ColumnForm listId", listId);
   const [[id1, id2], setIds] = useState(() => {
     return [nanoid(), nanoid()];
   });
@@ -22,6 +23,8 @@ const ColumnForm = function ({ listId }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("ColumnForm handleSubmit");
+    console.log("listId", listId);
     dispatch(addColumn(listId, title, icon));
     setTitle(defaultTitle);
     setIcon(defaultIcon);
