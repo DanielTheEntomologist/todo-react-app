@@ -12,6 +12,7 @@
   align-items: center;
   font-weight: bold;
   color: $color-dark;
+
   span {
     display: flex;
     align-items: center;
@@ -23,16 +24,19 @@
     justify-content: space-between;
     align-items: center;
     width: $base-size * 4;
-    border-radius: $radius;
-    .button {
+    button {
       color: $color-dark;
+      background-color: $color-light;
       padding: $base-size / 2;
+      border: none;
+      border-radius: $radius;
       cursor: pointer;
+
       &:hover {
         background: darken($color-light, 10%);
       }
     }
-    .isFavorite {
+    button.isFavorite {
       color: $color-warning;
     }
   }

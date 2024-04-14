@@ -43,7 +43,12 @@ export const addColumn = (listId, title, icon) => {
 export const addCard = (columnId, title) => {
   return {
     type: "ADD_CARD",
-    payload: { id: nanoid(), columnId: columnId, title: title },
+    payload: {
+      id: nanoid(),
+      columnId: columnId,
+      title: title,
+      isFavorite: false,
+    },
   };
 };
 export const changeSearchTerm = (term) => {
@@ -58,6 +63,19 @@ export const addList = (title, description) => {
     payload: { id: nanoid(), title: title, description: description },
   };
 };
+export const toggleFavoriteCard = (id) => {
+  return {
+    type: "TOGGLE_CARD_FAVORITE",
+    payload: { id: id },
+  };
+};
+
+export const removeCard = (id) => {
+  return {
+    type: "REMOVE_CARD",
+    payload: { id: id },
+  };
+};
 
 //reducer
 const reducer = (state, action) => {
@@ -70,6 +88,20 @@ const reducer = (state, action) => {
       return { ...state, searchTerm: action.payload.term };
     case "ADD_LIST":
       return { ...state, lists: [...state.lists, action.payload] };
+    case "TOGGLE_CARD_FAVORITE":
+      return {
+        ...state,
+        cards: state.cards.map((card) =>
+          card.id === action.payload.id
+            ? { ...card, isFavorite: !card.isFavorite }
+            : card
+        ),
+      };
+    case "REMOVE_CARD":
+      return {
+        ...state,
+        cards: state.cards.filter((card) => card.id !== action.payload.id),
+      };
     default:
       return state;
   }
