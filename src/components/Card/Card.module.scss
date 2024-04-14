@@ -9,6 +9,31 @@
   border-radius: $radius;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-weight: bold;
   color: $color-dark;
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: $base-size * 4;
+    border-radius: $radius;
+    .button {
+      color: $color-dark;
+      padding: $base-size / 2;
+      cursor: pointer;
+      &:hover {
+        background: darken($color-light, 10%);
+      }
+    }
+    .isFavorite {
+      color: $color-warning;
+    }
+  }
 }
