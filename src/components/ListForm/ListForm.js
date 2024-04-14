@@ -48,7 +48,7 @@ const ListForm = function () {
           onChange={(e) => setSubtitle(e.target.value)}
         />
       </div>
-      <Button>Add column</Button>
+      <Button>Add List</Button>
     </form>
   );
 };
