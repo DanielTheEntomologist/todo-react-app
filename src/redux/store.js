@@ -29,6 +29,10 @@ export const getAllLists = (state) => {
   return state.lists;
 };
 
+export const getAllListIds = (state) => {
+  return state.lists.map((list) => list.id);
+};
+
 //action creators
 export const addColumn = (listId, title, icon) => {
   return {
